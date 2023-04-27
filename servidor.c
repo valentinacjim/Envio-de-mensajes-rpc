@@ -5,27 +5,15 @@
  */
 
 #include "claves.h"
+#include "claves_fun.h"
 
 bool_t
 server_init_1_svc(int *result, struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	/*
-	 * insert server code here
-	 */
-
-	return retval;
-}
-
-bool_t
-server_exist_1_svc(int key, int *result,  struct svc_req *rqstp)
-{
-	bool_t retval;
-
-	/*
-	 * insert server code here
-	 */
+	*result = init();
+	retval = TRUE;
 
 	return retval;
 }
@@ -35,9 +23,8 @@ server_set_value_1_svc(int key, char *value1, int value2, double value3, int *re
 {
 	bool_t retval;
 
-	/*
-	 * insert server code here
-	 */
+	*result = set_value(key, value1, value2, value3);
+	retval = TRUE;
 
 	return retval;
 }
@@ -47,33 +34,41 @@ server_get_value_1_svc(int key, respuesta *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	/*
-	 * insert server code here
-	 */
+	*result = get_value(key);
+	retval = TRUE;
 
 	return retval;
 }
 
 bool_t
-server_delete_value_1_svc(int key, int *result,  struct svc_req *rqstp)
+server_modify_value_1_svc(int key, char *value1, int value2, double value3, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	/*
-	 * insert server code here
-	 */
+	*result = modify_value(key, value1, value2, value3);
+	retval = TRUE;
 
 	return retval;
 }
 
 bool_t
-server_modify_value_1_svc(int key, char *arg2, int value2, double value3, int *result,  struct svc_req *rqstp)
+server_delete_key_1_svc(int key, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	/*
-	 * insert server code here
-	 */
+	*result = delete_key(key);
+	retval = TRUE;
+
+	return retval;
+}
+
+bool_t
+server_exist_1_svc(int key, int *result, struct svc_req *rqstp)
+{
+	bool_t retval;
+
+	*result = exist(key);
+	retval = TRUE;
 
 	return retval;
 }
@@ -83,9 +78,8 @@ server_copy_key_1_svc(int key1, int key2, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	/*
-	 * insert server code here
-	 */
+	*result = copy_key(key1, key2);
+	retval = TRUE;
 
 	return retval;
 }

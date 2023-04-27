@@ -11,7 +11,7 @@ int init(){
     CLIENT *clnt;
 	enum clnt_stat retval;
 	int result;
-	clnt = clnt_create ("127.0.0.1", CLAVES, CLAVESVER, "tdp");
+	clnt = clnt_create ("127.0.0.1", CLAVES, OPERACIONESVER, "tdp");
     if (clnt == NULL) {
         clnt_pcreateerror ("127.0.0.1");
         exit (1);

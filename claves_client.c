@@ -15,25 +15,25 @@ claves_1(char *host)
 	int result_1;
 	enum clnt_stat retval_2;
 	int result_2;
-	int server_exist_1_key;
-	enum clnt_stat retval_3;
-	int result_3;
 	int server_set_value_1_key;
 	char *server_set_value_1_value1;
 	int server_set_value_1_value2;
 	double server_set_value_1_value3;
-	enum clnt_stat retval_4;
-	respuesta result_4;
+	enum clnt_stat retval_3;
+	respuesta result_3;
 	int server_get_value_1_key;
+	enum clnt_stat retval_4;
+	int result_4;
+	int server_delete_key_1_key;
 	enum clnt_stat retval_5;
 	int result_5;
-	int server_delete_value_1_key;
-	enum clnt_stat retval_6;
-	int result_6;
 	int server_modify_value_1_key;
 	char *server_modify_value_1_arg2;
 	int server_modify_value_1_value2;
 	double server_modify_value_1_value3;
+	enum clnt_stat retval_6;
+	int result_6;
+	int server_exist_1_key;
 	enum clnt_stat retval_7;
 	int result_7;
 	int server_copy_key_1_key1;
@@ -51,23 +51,23 @@ claves_1(char *host)
 	if (retval_1 != RPC_SUCCESS) {
 		clnt_perror (clnt, "call failed");
 	}
-	retval_2 = server_exist_1(server_exist_1_key, &result_2, clnt);
+	retval_2 = server_set_value_1(server_set_value_1_key, server_set_value_1_value1, server_set_value_1_value2, server_set_value_1_value3, &result_2, clnt);
 	if (retval_2 != RPC_SUCCESS) {
 		clnt_perror (clnt, "call failed");
 	}
-	retval_3 = server_set_value_1(server_set_value_1_key, server_set_value_1_value1, server_set_value_1_value2, server_set_value_1_value3, &result_3, clnt);
+	retval_3 = server_get_value_1(server_get_value_1_key, &result_3, clnt);
 	if (retval_3 != RPC_SUCCESS) {
 		clnt_perror (clnt, "call failed");
 	}
-	retval_4 = server_get_value_1(server_get_value_1_key, &result_4, clnt);
+	retval_4 = server_delete_key_1(server_delete_key_1_key, &result_4, clnt);
 	if (retval_4 != RPC_SUCCESS) {
 		clnt_perror (clnt, "call failed");
 	}
-	retval_5 = server_delete_value_1(server_delete_value_1_key, &result_5, clnt);
+	retval_5 = server_modify_value_1(server_modify_value_1_key, server_modify_value_1_arg2, server_modify_value_1_value2, server_modify_value_1_value3, &result_5, clnt);
 	if (retval_5 != RPC_SUCCESS) {
 		clnt_perror (clnt, "call failed");
 	}
-	retval_6 = server_modify_value_1(server_modify_value_1_key, server_modify_value_1_arg2, server_modify_value_1_value2, server_modify_value_1_value3, &result_6, clnt);
+	retval_6 = server_exist_1(server_exist_1_key, &result_6, clnt);
 	if (retval_6 != RPC_SUCCESS) {
 		clnt_perror (clnt, "call failed");
 	}

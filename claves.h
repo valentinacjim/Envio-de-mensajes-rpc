@@ -52,21 +52,21 @@ typedef struct server_copy_key_1_argument server_copy_key_1_argument;
 #define server_init 1
 extern  enum clnt_stat server_init_1(int *, CLIENT *);
 extern  bool_t server_init_1_svc(int *, struct svc_req *);
-#define server_exist 2
-extern  enum clnt_stat server_exist_1(int , int *, CLIENT *);
-extern  bool_t server_exist_1_svc(int , int *, struct svc_req *);
-#define server_set_value 3
+#define server_set_value 2
 extern  enum clnt_stat server_set_value_1(int , char *, int , double , int *, CLIENT *);
 extern  bool_t server_set_value_1_svc(int , char *, int , double , int *, struct svc_req *);
-#define server_get_value 4
+#define server_get_value 3
 extern  enum clnt_stat server_get_value_1(int , respuesta *, CLIENT *);
 extern  bool_t server_get_value_1_svc(int , respuesta *, struct svc_req *);
-#define server_delete_value 5
-extern  enum clnt_stat server_delete_value_1(int , int *, CLIENT *);
-extern  bool_t server_delete_value_1_svc(int , int *, struct svc_req *);
-#define server_modify_value 6
+#define server_delete_key 4
+extern  enum clnt_stat server_delete_key_1(int , int *, CLIENT *);
+extern  bool_t server_delete_key_1_svc(int , int *, struct svc_req *);
+#define server_modify_value 5
 extern  enum clnt_stat server_modify_value_1(int , char *, int , double , int *, CLIENT *);
 extern  bool_t server_modify_value_1_svc(int , char *, int , double , int *, struct svc_req *);
+#define server_exist 6
+extern  enum clnt_stat server_exist_1(int , int *, CLIENT *);
+extern  bool_t server_exist_1_svc(int , int *, struct svc_req *);
 #define server_copy_key 7
 extern  enum clnt_stat server_copy_key_1(int , int , int *, CLIENT *);
 extern  bool_t server_copy_key_1_svc(int , int , int *, struct svc_req *);
@@ -76,21 +76,21 @@ extern int claves_1_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
 #define server_init 1
 extern  enum clnt_stat server_init_1();
 extern  bool_t server_init_1_svc();
-#define server_exist 2
-extern  enum clnt_stat server_exist_1();
-extern  bool_t server_exist_1_svc();
-#define server_set_value 3
+#define server_set_value 2
 extern  enum clnt_stat server_set_value_1();
 extern  bool_t server_set_value_1_svc();
-#define server_get_value 4
+#define server_get_value 3
 extern  enum clnt_stat server_get_value_1();
 extern  bool_t server_get_value_1_svc();
-#define server_delete_value 5
-extern  enum clnt_stat server_delete_value_1();
-extern  bool_t server_delete_value_1_svc();
-#define server_modify_value 6
+#define server_delete_key 4
+extern  enum clnt_stat server_delete_key_1();
+extern  bool_t server_delete_key_1_svc();
+#define server_modify_value 5
 extern  enum clnt_stat server_modify_value_1();
 extern  bool_t server_modify_value_1_svc();
+#define server_exist 6
+extern  enum clnt_stat server_exist_1();
+extern  bool_t server_exist_1_svc();
 #define server_copy_key 7
 extern  enum clnt_stat server_copy_key_1();
 extern  bool_t server_copy_key_1_svc();
