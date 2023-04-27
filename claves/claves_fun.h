@@ -1,10 +1,11 @@
-#ifndef CLAVES_H
-#define CLAVES_H
+#ifndef CLAVES_FUN_H
+#define CLAVES_FUN_H
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <../claves.h>
+#include "claves.h"
+
 
 
 int init();

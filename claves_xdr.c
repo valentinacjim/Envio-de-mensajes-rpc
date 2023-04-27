@@ -10,7 +10,7 @@ xdr_respuesta (XDR *xdrs, respuesta *objp)
 {
 	register int32_t *buf;
 
-	 if (!xdr_int (xdrs, &objp->key))
+	 if (!xdr_int (xdrs, &objp->result))
 		 return FALSE;
 	 if (!xdr_string (xdrs, &objp->value1, 256))
 		 return FALSE;
@@ -22,11 +22,11 @@ xdr_respuesta (XDR *xdrs, respuesta *objp)
 }
 
 bool_t
-xdr_set_value_1_argument (XDR *xdrs, set_value_1_argument *objp)
+xdr_server_set_value_1_argument (XDR *xdrs, server_set_value_1_argument *objp)
 {
 	 if (!xdr_int (xdrs, &objp->key))
 		 return FALSE;
-	 if (!xdr_string (xdrs, &objp->value1, 256))
+	 if (!xdr_string (xdrs, &objp->value1, ~0))
 		 return FALSE;
 	 if (!xdr_int (xdrs, &objp->value2))
 		 return FALSE;
@@ -36,11 +36,11 @@ xdr_set_value_1_argument (XDR *xdrs, set_value_1_argument *objp)
 }
 
 bool_t
-xdr_modify_value_1_argument (XDR *xdrs, modify_value_1_argument *objp)
+xdr_server_modify_value_1_argument (XDR *xdrs, server_modify_value_1_argument *objp)
 {
 	 if (!xdr_int (xdrs, &objp->key))
 		 return FALSE;
-	 if (!xdr_string (xdrs, &objp->value1, 256))
+	 if (!xdr_string (xdrs, &objp->arg2, ~0))
 		 return FALSE;
 	 if (!xdr_int (xdrs, &objp->value2))
 		 return FALSE;
@@ -50,7 +50,7 @@ xdr_modify_value_1_argument (XDR *xdrs, modify_value_1_argument *objp)
 }
 
 bool_t
-xdr_copy_key_1_argument (XDR *xdrs, copy_key_1_argument *objp)
+xdr_server_copy_key_1_argument (XDR *xdrs, server_copy_key_1_argument *objp)
 {
 	 if (!xdr_int (xdrs, &objp->key1))
 		 return FALSE;

@@ -10,74 +10,74 @@
 static struct timeval TIMEOUT = { 25, 0 };
 
 enum clnt_stat 
-init_1(int *clnt_res, CLIENT *clnt)
+server_init_1(int *clnt_res, CLIENT *clnt)
 {
-	 return (clnt_call (clnt, init, (xdrproc_t) xdr_void, (caddr_t) NULL,
+	 return (clnt_call (clnt, server_init, (xdrproc_t) xdr_void, (caddr_t) NULL,
 		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
 		TIMEOUT));
 
 }
 
 enum clnt_stat 
-set_value_1(int key, char *value1, int value2, double value3, int *clnt_res,  CLIENT *clnt)
+server_exist_1(int key, int *clnt_res,  CLIENT *clnt)
 {
-	set_value_1_argument arg;
+	return (clnt_call(clnt, server_exist,
+		(xdrproc_t) xdr_int, (caddr_t) &key,
+		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
+		TIMEOUT));
+}
+
+enum clnt_stat 
+server_set_value_1(int key, char *value1, int value2, double value3, int *clnt_res,  CLIENT *clnt)
+{
+	server_set_value_1_argument arg;
 	arg.key = key;
 	arg.value1 = value1;
 	arg.value2 = value2;
 	arg.value3 = value3;
-	return (clnt_call (clnt, set_value, (xdrproc_t) xdr_set_value_1_argument, (caddr_t) &arg,
+	return (clnt_call (clnt, server_set_value, (xdrproc_t) xdr_server_set_value_1_argument, (caddr_t) &arg,
 		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
 		TIMEOUT));
 }
 
 enum clnt_stat 
-get_value_1(int key, respuesta *clnt_res,  CLIENT *clnt)
+server_get_value_1(int key, respuesta *clnt_res,  CLIENT *clnt)
 {
-	return (clnt_call(clnt, get_value,
+	return (clnt_call(clnt, server_get_value,
 		(xdrproc_t) xdr_int, (caddr_t) &key,
 		(xdrproc_t) xdr_respuesta, (caddr_t) clnt_res,
 		TIMEOUT));
 }
 
 enum clnt_stat 
-modify_value_1(int key, char *value1, int value2, double value3, int *clnt_res,  CLIENT *clnt)
+server_delete_value_1(int key, int *clnt_res,  CLIENT *clnt)
 {
-	modify_value_1_argument arg;
-	arg.key = key;
-	arg.value1 = value1;
-	arg.value2 = value2;
-	arg.value3 = value3;
-	return (clnt_call (clnt, modify_value, (xdrproc_t) xdr_modify_value_1_argument, (caddr_t) &arg,
-		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
-		TIMEOUT));
-}
-
-enum clnt_stat 
-delete_value_1(int key, int *clnt_res,  CLIENT *clnt)
-{
-	return (clnt_call(clnt, delete_value,
+	return (clnt_call(clnt, server_delete_value,
 		(xdrproc_t) xdr_int, (caddr_t) &key,
 		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
 		TIMEOUT));
 }
 
 enum clnt_stat 
-exist_1(int *clnt_res, CLIENT *clnt)
+server_modify_value_1(int key, char *arg2, int value2, double value3, int *clnt_res,  CLIENT *clnt)
 {
-	 return (clnt_call (clnt, exist, (xdrproc_t) xdr_void, (caddr_t) NULL,
+	server_modify_value_1_argument arg;
+	arg.key = key;
+	arg.arg2 = arg2;
+	arg.value2 = value2;
+	arg.value3 = value3;
+	return (clnt_call (clnt, server_modify_value, (xdrproc_t) xdr_server_modify_value_1_argument, (caddr_t) &arg,
 		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
 		TIMEOUT));
-
 }
 
 enum clnt_stat 
-copy_key_1(int key1, int key2, int *clnt_res,  CLIENT *clnt)
+server_copy_key_1(int key1, int key2, int *clnt_res,  CLIENT *clnt)
 {
-	copy_key_1_argument arg;
+	server_copy_key_1_argument arg;
 	arg.key1 = key1;
 	arg.key2 = key2;
-	return (clnt_call (clnt, copy_key, (xdrproc_t) xdr_copy_key_1_argument, (caddr_t) &arg,
+	return (clnt_call (clnt, server_copy_key, (xdrproc_t) xdr_server_copy_key_1_argument, (caddr_t) &arg,
 		(xdrproc_t) xdr_int, (caddr_t) clnt_res,
 		TIMEOUT));
 }

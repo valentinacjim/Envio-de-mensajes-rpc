@@ -7,78 +7,85 @@
 #include "claves.h"
 
 bool_t
-init_1_svc(int *result, struct svc_req *rqstp)
+server_init_1_svc(int *result, struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	*result = init();
-	retval = TRUE;
+	/*
+	 * insert server code here
+	 */
 
 	return retval;
 }
 
 bool_t
-set_value_1_svc(int key, char *value1, int value2, double value3, int *result,  struct svc_req *rqstp)
+server_exist_1_svc(int key, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	*result = set_value(key, value1, value2, value3);
-	retval = TRUE;
+	/*
+	 * insert server code here
+	 */
 
 	return retval;
 }
 
 bool_t
-get_value_1_svc(int key, respuesta *result,  struct svc_req *rqstp)
+server_set_value_1_svc(int key, char *value1, int value2, double value3, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	*result = get_value(key);
-	retval = TRUE;
+	/*
+	 * insert server code here
+	 */
 
 	return retval;
 }
 
 bool_t
-modify_value_1_svc(int key, char *value1, int value2, double value3, int *result,  struct svc_req *rqstp)
+server_get_value_1_svc(int key, respuesta *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	*result = modify_value(key, value1, value2, value3);
-	retval = TRUE;
+	/*
+	 * insert server code here
+	 */
 
 	return retval;
 }
 
 bool_t
-delete_value_1_svc(int key, int *result,  struct svc_req *rqstp)
+server_delete_value_1_svc(int key, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	*result = delete_value(key);
-	retval = TRUE;
+	/*
+	 * insert server code here
+	 */
 
 	return retval;
 }
 
 bool_t
-exist_1_svc(int *result, struct svc_req *rqstp)
+server_modify_value_1_svc(int key, char *arg2, int value2, double value3, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	*result = exist();
-	retval = TRUE;
+	/*
+	 * insert server code here
+	 */
 
 	return retval;
 }
 
 bool_t
-copy_key_1_svc(int key1, int key2, int *result,  struct svc_req *rqstp)
+server_copy_key_1_svc(int key1, int key2, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
 
-	*result = copy_key(key1, key2);
-	retval = TRUE;
+	/*
+	 * insert server code here
+	 */
 
 	return retval;
 }
