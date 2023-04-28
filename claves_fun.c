@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "claves_fun.h"
+
+// #include "claves_fun.h"
 #include "claves.h"
-#
+
 // #include <rpc/rpc.h>
 
 
-int init(){
+int init_client(){
     CLIENT *clnt;
 	enum clnt_stat retval;
 	int result;
@@ -23,7 +24,7 @@ int init(){
     return 0;
 };
 
-int set_value(int key, char *value1, int value2, double value3){
+int set_value_client(int key, char *value1, int value2, double value3){
     CLIENT *clnt;
 	enum clnt_stat retval;
 	int result;
@@ -35,10 +36,12 @@ int set_value(int key, char *value1, int value2, double value3){
     return result;
 };
 
-respuesta get_value(int key){
+respuesta get_value_client(int key){
     CLIENT *clnt;
 	enum clnt_stat retval;
 	respuesta result;
+
+    result.value1 = malloc(256);
 
     
     retval = server_get_value_1(key, &result, clnt);
@@ -48,7 +51,7 @@ respuesta get_value(int key){
     return result;
 };
 
-int modify_value(int key, char *value1, int value2, double value3){
+int modify_value_client(int key, char *value1, int value2, double value3){
     CLIENT *clnt;
 	enum clnt_stat retval;
     int result;
@@ -60,7 +63,7 @@ int modify_value(int key, char *value1, int value2, double value3){
     return result;
 };
 
-int delete_key(int key){
+int delete_key_client(int key){
     CLIENT *clnt;
 	enum clnt_stat retval;
     int result;
@@ -71,7 +74,7 @@ int delete_key(int key){
     return result;
 };
 
-int exist(int key){
+int exist_client(int key){
     CLIENT *clnt;
 	enum clnt_stat retval;
     int result;
@@ -82,7 +85,7 @@ int exist(int key){
     return result;
 };
 
-int copy_key(int key, int new_key){
+int copy_key_client(int key, int new_key){
     CLIENT *clnt;
 	enum clnt_stat retval;
     int result;

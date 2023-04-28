@@ -6,15 +6,17 @@
 
 #include "claves.h"
 #include "claves_fun.h"
+pthread_mutex_t mimutex = PTHREAD_MUTEX_INITIALIZER;
+
 
 bool_t
 server_init_1_svc(int *result, struct svc_req *rqstp)
 {
 	bool_t retval;
-
-	*result = init();
+	/*
+	*result = init_client();
 	retval = TRUE;
-
+	*/
 	return retval;
 }
 
@@ -22,10 +24,10 @@ bool_t
 server_set_value_1_svc(int key, char *value1, int value2, double value3, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
-
-	*result = set_value(key, value1, value2, value3);
+	/*
+	*result = set_value_client(key, value1, value2, value3);
 	retval = TRUE;
-
+	*/
 	return retval;
 }
 
@@ -33,10 +35,12 @@ bool_t
 server_get_value_1_svc(int key, respuesta *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
+	result->value1 = malloc(256);
 
-	*result = get_value(key);
+	/*
+	*result = get_value_client(key);
 	retval = TRUE;
-
+	*/
 	return retval;
 }
 
@@ -44,10 +48,10 @@ bool_t
 server_modify_value_1_svc(int key, char *value1, int value2, double value3, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
-
-	*result = modify_value(key, value1, value2, value3);
+	/*
+	*result = modify_value_client(key, value1, value2, value3);
 	retval = TRUE;
-
+	*/
 	return retval;
 }
 
@@ -55,10 +59,10 @@ bool_t
 server_delete_key_1_svc(int key, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
-
-	*result = delete_key(key);
+	/*
+	*result = delete_key_client(key);
 	retval = TRUE;
-
+	*/
 	return retval;
 }
 
@@ -66,10 +70,10 @@ bool_t
 server_exist_1_svc(int key, int *result, struct svc_req *rqstp)
 {
 	bool_t retval;
-
-	*result = exist(key);
+	/*
+	*result = exist_client(key);
 	retval = TRUE;
-
+	*/
 	return retval;
 }
 
@@ -77,10 +81,10 @@ bool_t
 server_copy_key_1_svc(int key1, int key2, int *result,  struct svc_req *rqstp)
 {
 	bool_t retval;
-
-	*result = copy_key(key1, key2);
+	/*
+	*result = copy_key_client(key1, key2);
 	retval = TRUE;
-
+	*/
 	return retval;
 }
 

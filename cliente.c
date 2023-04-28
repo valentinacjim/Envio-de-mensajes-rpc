@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
-
+#include "claves.h"
 
 int main(void){
     // char string[256];
@@ -12,7 +12,7 @@ int main(void){
     // else{
     //     printf("Expected: Error al guardar la clave (cliente.c) \n");}
     
-    if(init() == 0){
+    if(init_client() == 0){
         printf("Expected: Iniciado correctamente (cliente.c) \n");}
     else{
         printf("Error al iniciar (cliente.c) \n");}

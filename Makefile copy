@@ -1,0 +1,35 @@
+CC = gcc
+OBJS = servidor cliente cliente2 
+# CLAVES_PATH = claves
+BIN_FILES = servidor cliente cliente2
+CFLAGS += -lrt -g -I/usr/include/tirpc
+LDLIBS += -lnsl -lpthread -ldl -ltirpc
+CLIENTS_OBJS = claves_fun.o claves_xdr.o claves_clnt.o 
+CLIENTE1 = cliente.o
+
+
+
+all: $(OBJS)
+
+libclaves.so: claves_fun.o
+	$(CC) $(CFLAGS) -fPIC -c -o  $< 
+	$(CC) $(LDLIBS) -shared -o $@ claves_fun.o 
+
+claves_svc.o: claves_svc.c claves.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+claves_clnt.o: claves_clnt.c claves.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+	
+servidor: servidor.o claves_svc.o claves_xdr.o claves_fun.o
+	$(CC) $(CFLAGS) $^ -o $@.out $(LDLIBS)
+
+cliente: $(CLIENTE1) $(CLIENTS_OBJS) libclaves.so
+	$(CC) $(CFLAGS) $(CLIENTE1) $(CLIENTS_OBJS) -o $@.out  $(LDLIBS)  -L. -lclaves 
+
+clean:
+	rm -f $(BIN_FILES) *.o *.so *.out 
+
+re: clean all
+
+.PHONY: all libclaves.so servidor cliente clean re sll cliente2 
