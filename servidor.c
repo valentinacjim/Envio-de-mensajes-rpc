@@ -5,8 +5,8 @@
  */
 
 #include "claves.h"
-#include "claves_fun.h"
 #include "sll.h"
+
 pthread_mutex_t mimutex = PTHREAD_MUTEX_INITIALIZER;
 
 struct List *lista;
@@ -22,6 +22,7 @@ server_init_1_svc(int *result, struct svc_req *rqstp)
 		}
 	lista = newList();
 	lista_creada = 1;
+	//sleep
 	pthread_mutex_unlock(&mimutex);
 	*result = 0;
 	
@@ -40,6 +41,7 @@ server_set_value_1_svc(int key, char *value1, int value2, double value3, int *re
 	pthread_mutex_lock(&mimutex);
 	if (lista_creada == 0){
 			*result = -1;
+			pthread_mutex_unlock(&mimutex);
 			return retval;
 		}
 	new.clave = key;
@@ -67,6 +69,7 @@ server_get_value_1_svc(int key, respuesta *result,  struct svc_req *rqstp)
 	pthread_mutex_lock(&mimutex);
 	if (lista_creada == 0){
 		result->result = -1;
+		pthread_mutex_unlock(&mimutex);
 		return retval;
 	}
 	if (search(lista, key) != NULL){
@@ -77,6 +80,7 @@ server_get_value_1_svc(int key, respuesta *result,  struct svc_req *rqstp)
 		result->value2 = e->data.val2;
 		result->value3 = e->data.val3;
 		// retval = TRUE;
+		pthread_mutex_unlock(&mimutex);
 		return retval;
 	}
 	pthread_mutex_unlock(&mimutex);
@@ -92,10 +96,12 @@ server_modify_value_1_svc(int key, char *value1, int value2, double value3, int 
 	pthread_mutex_lock(&mimutex);
 	if (lista_creada == 0){
 			*result= -1;
+			pthread_mutex_unlock(&mimutex);
 			return retval;
 		}
 	if (search(lista, key) == NULL){
 		*result = -1;
+		pthread_mutex_unlock(&mimutex);
 		return retval;
 		}
 	struct Node *e = search(lista, key);
@@ -116,10 +122,12 @@ server_delete_key_1_svc(int key, int *result,  struct svc_req *rqstp)
 	pthread_mutex_lock(&mimutex);	
 	if (lista_creada == 0){
 		*result = -1;
+		pthread_mutex_unlock(&mimutex);
 		return retval;
 	}
 	if (search(lista, key) == NULL){
 		*result = -1;
+		pthread_mutex_unlock(&mimutex);
 		return retval;
 	}
 	removeNode(lista, key);
@@ -139,10 +147,12 @@ server_exist_1_svc(int key, int *result, struct svc_req *rqstp)
 	pthread_mutex_lock(&mimutex);
 	if (lista_creada == 0){
 		*result = -1;
+		pthread_mutex_unlock(&mimutex);
 		return retval;
 	}
 	if (search(lista, key) == NULL){
 		*result = 0;
+		pthread_mutex_unlock(&mimutex);
 		// retval = TRUE;
 		return retval;
 	}
@@ -163,12 +173,14 @@ server_copy_key_1_svc(int key1, int key2, int *result,  struct svc_req *rqstp)
 	pthread_mutex_lock(&mimutex);
 	if (lista_creada == 0){		
 		*result = -1;
+		pthread_mutex_unlock(&mimutex);
 		return retval;
 	}
 	
 	struct Node *e1 = search(lista, key1);
 	if (e1 == NULL){
 		*result = -1;
+		pthread_mutex_unlock(&mimutex);
 		return retval;
 	}
 		
@@ -180,6 +192,7 @@ server_copy_key_1_svc(int key1, int key2, int *result,  struct svc_req *rqstp)
 		e2->data.val3 = e1->data.val3;
 		*result = 0;
 		// retval = TRUE;
+		pthread_mutex_unlock(&mimutex);
 		return retval;
 	}
 		

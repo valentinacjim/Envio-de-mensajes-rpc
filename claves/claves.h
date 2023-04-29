@@ -4,13 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "claves.h"
 
 
 
 int init_client();
 int set_value_client(int key, char *value1, int value2, double value3);
-respuesta get_value_client(int key);
+int get_value_client(int key, char *value1, int *value2, double *value3);
 int modify_value_client(int key, char *value1, int value2, double value3);
 int delete_key_client(int key);
 int exist_client(int key);

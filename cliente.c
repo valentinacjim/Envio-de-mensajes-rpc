@@ -1,8 +1,8 @@
-#include "claves_fun.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
-#include "claves.h"
+
+#include "claves/claves.h"
 
 int main(void){
      char string[256];
@@ -32,11 +32,11 @@ int main(void){
     int *val2 = &a;
     double b;
     double *val3 = &b;
-    respuesta res = get_value_client(1);
+    // respuesta res = get_value_client(1);
 
-    if(res.result == 0){
+    if(get_value_client(1, val1, val2, val3) == 0){
         printf("Expected: Clave obtenida correctamente (cliente.c) \n");
-        printf("Val1: %s, Val2: %d, Val3: %f \n", res.value1, res.value2, res.value3);}
+        printf("Val1: %s Val2: %d Val3: %f \n", val1, *val2, *val3);}
 
     else{
         printf("Error al obtener la clave (cliente.c) \n");}
