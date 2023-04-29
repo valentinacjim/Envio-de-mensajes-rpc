@@ -40,7 +40,7 @@ claves_1(char *host)
 	int server_copy_key_1_key2;
 
 #ifndef	DEBUG
-	clnt = clnt_create (host, CLAVES, OPERACIONESVER, "udp");
+	clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
 	if (clnt == NULL) {
 		clnt_pcreateerror (host);
 		exit (1);

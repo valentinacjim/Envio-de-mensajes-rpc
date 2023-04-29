@@ -4,7 +4,7 @@ OBJS = servidor cliente cliente2
 BIN_FILES = servidor cliente 
 CFLAGS = -lrt -g -I/usr/include/tirpc
 LDLIBS = -lnsl -lpthread -ldl -ltirpc
-SERVER_OBJS = servidor.o claves_svc.c claves_xdr.c
+SERVER_OBJS = servidor.o claves_svc.c claves_xdr.c sll.o 
 CLIENTS_OBJS = claves_fun.o claves_xdr.c claves_clnt.c
 CLIENTE1 = cliente.o
 
@@ -15,10 +15,10 @@ libclaves.so: claves_fun.o $(CLIENTS_OBJS)
 	$(CC) $(LDLIBS) -shared -o $@ claves_fun.o 
 	
 servidor: $(SERVER_OBJS) 
-	$(CC) $(CFLAGS) $(SERVER_OBJS) -o $@.out $(LDLIBS)
+	$(CC) $(CFLAGS) $(SERVER_OBJS) -o $@ $(LDLIBS)
 
 cliente: $(CLIENTE1) libclaves.so
-	$(CC) $(CFLAGS) $(CLIENTE1) $(CLIENTS_OBJS) -o $@.out $(LDLIBS)  -L. -lclaves 
+	$(CC) $(CFLAGS) $(CLIENTE1) $(CLIENTS_OBJS) -o $@ $(LDLIBS)  -L. -lclaves 
 
 clean:
 	rm -f $(BIN_FILES) *.o *.so *.out 
