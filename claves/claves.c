@@ -12,6 +12,10 @@ int init_client(){
 	enum clnt_stat retval;
 	int result;
     char *host = getenv("IP_TUPLAS");
+    if (host == NULL){
+        printf("No se ha definido la variable de entorno IP_TUPLAS\n");
+        return -1;
+    }
 	clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
@@ -20,6 +24,7 @@ int init_client(){
     retval = server_init_1(&result, clnt);
     if (retval != RPC_SUCCESS) {
         clnt_perror (clnt, "call failed");
+        return -1;
     }
     
     return result;
@@ -30,7 +35,11 @@ int set_value_client(int key, char *value1, int value2, double value3){
 	enum clnt_stat retval;
 	int result;
     char *host = getenv("IP_TUPLAS");
-	clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
+	if (host == NULL){
+        printf("No se ha definido la variable de entorno IP_TUPLAS\n");
+        return -1;
+    }
+    clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
@@ -38,6 +47,7 @@ int set_value_client(int key, char *value1, int value2, double value3){
     retval = server_set_value_1(key, value1, value2, value3, &result, clnt);
     if (retval != RPC_SUCCESS) {
         clnt_perror (clnt, "call failed");
+        return -1;
     }
 
     return result;
@@ -48,7 +58,11 @@ int get_value_client(int key, char *value1, int *value2, double *value3){
 	enum clnt_stat retval;
 	respuesta result;
     char *host = getenv("IP_TUPLAS");
-	clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
+	if (host == NULL){
+        printf("No se ha definido la variable de entorno IP_TUPLAS\n");
+        return -1;
+    }
+    clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
@@ -59,6 +73,7 @@ int get_value_client(int key, char *value1, int *value2, double *value3){
     retval = server_get_value_1(key, &result, clnt);
     if (retval != RPC_SUCCESS) {
         clnt_perror (clnt, "call failed");
+        return -1;
     }
     if (result.result == 0){
         strcpy(value1, result.value1);
@@ -74,7 +89,11 @@ int modify_value_client(int key, char *value1, int value2, double value3){
 	enum clnt_stat retval;
     int result;
     char *host = getenv("IP_TUPLAS");
-	clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
+	if (host == NULL){
+        printf("No se ha definido la variable de entorno IP_TUPLAS\n");
+        return -1;
+    }
+    clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
@@ -83,6 +102,7 @@ int modify_value_client(int key, char *value1, int value2, double value3){
     retval = server_modify_value_1(key, value1, value2, value3, &result, clnt);
     if (retval != RPC_SUCCESS) {
         clnt_perror (clnt, "call failed");
+        return -1;
     }
     return result;
 };
@@ -92,7 +112,11 @@ int delete_key_client(int key){
 	enum clnt_stat retval;
     int result;
     char *host = getenv("IP_TUPLAS");
-	clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
+	if (host == NULL){
+        printf("No se ha definido la variable de entorno IP_TUPLAS\n");
+        return -1;
+    }
+    clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
@@ -100,6 +124,7 @@ int delete_key_client(int key){
     retval = server_delete_key_1(key, &result, clnt);
     if (retval != RPC_SUCCESS) {
         clnt_perror (clnt, "call failed");
+        return -1;
     }
     return result;
 };
@@ -109,7 +134,11 @@ int exist_client(int key){
 	enum clnt_stat retval;
     int result;
     char *host = getenv("IP_TUPLAS");
-	clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
+	if (host == NULL){
+        printf("No se ha definido la variable de entorno IP_TUPLAS\n");
+        return -1;
+    }
+    clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
@@ -117,24 +146,30 @@ int exist_client(int key){
     retval = server_exist_1(key, &result, clnt);
     if (retval != RPC_SUCCESS) {
         clnt_perror (clnt, "call failed");
+        return -1;
     }
     return result;
 };
 
-int copy_key_client(int key, int new_key){
+int copy_key_client(int key1, int key2){
     CLIENT *clnt;
 	enum clnt_stat retval;
     int result;
     char *host = getenv("IP_TUPLAS");
-	clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
+	if (host == NULL){
+        printf("No se ha definido la variable de entorno IP_TUPLAS\n");
+        return -1;
+    }
+    clnt = clnt_create (host, CLAVES, OPERACIONESVER, "tcp");
     if (clnt == NULL) {
         clnt_pcreateerror (host);
         exit (1);
     }
     
-    retval = server_copy_key_1(key, new_key, &result, clnt);
+    retval = server_copy_key_1(key1, key2, &result, clnt);
     if (retval != RPC_SUCCESS) {
         clnt_perror (clnt, "call failed");
+        return -1;
     }
     return result;
 };
