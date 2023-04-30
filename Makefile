@@ -37,7 +37,8 @@ servidor_dies: $(PRUEBAS_PATH)servidor_dies.o claves_svc.c claves_xdr.c sll.o
 
 clean:
 	rm -f $(BIN_FILES) *.o *.so *.out 
+	rm -f $(CLAVES_PATH)*.o
 
 re: clean all
 
-.PHONY: all libclaves.so servidor cliente clean re sll cliente2 claves
+.PHONY: all libclaves.so servidor cliente clean re sll claves cliente_pruebas cliente_dies servidor_timeout servidor_dies

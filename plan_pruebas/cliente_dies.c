@@ -7,5 +7,5 @@
 int main(void){
     int res;
     res = init_client();
-    kill(getpid(), 9);
+    printf("init_client: %d\n", res);
 }

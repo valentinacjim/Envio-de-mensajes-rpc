@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "string.h": "c",
-        "claves.h": "c",
-        "claves_fun.h": "c"
-    }
-}
